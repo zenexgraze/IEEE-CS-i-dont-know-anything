@@ -1,16 +1,17 @@
-# Creation of a Node
-class Node:
-    def __init__(self, data):
-        self.data = data  # Store the data
-        self.next = None  # Pointer to next node (initially None)
-        self.prev = None  # Pointer to previous node (initially None)
+# Node Creation
+class Doubly_Node:
+    def __init__(self, data, next=None, prev=None):
+        self.data = data    # Store the data
+        self.next = next    # Pointer to next node
+        self.prev = prev    # Pointer to previous node
 
-class DoublyLinkedList:
+
+class Doubly_Linked_List:
     def __init__(self):
-        self.head = None  # Head of the list (Initially empty)
+        self.head = None  # Head of the list which is initially empty
 
     def insert_at_head(self, data):
-        new_node = Node(data)  # Create a new node
+        new_node = Doubly_Node(data)  # Create a new node
         if self.head is None:
             self.head = new_node  # If list is empty, set head to new node
         else:
@@ -19,38 +20,38 @@ class DoublyLinkedList:
             self.head = new_node  # Update head to new node
 
     def insert_at_tail(self, data):
-        new_node = Node(data)
+        new_node = Doubly_Node(data)
         if self.head is None:
             self.head = new_node
         else:
-            temp = self.head
-            while temp.next:  # Traverse to the last node
-                temp = temp.next
-            temp.next = new_node  # Update last node’s next
-            new_node.prev = temp  # Update new node’s prev
+            temp_cursor = self.head
+            while temp_cursor.next:  # Traverse to the last node
+                temp_cursor = temp_cursor.next
+            temp_cursor.next = new_node  # Update last node’s next
+            new_node.prev = temp_cursor  # Update new node’s prev
 
     def print_forward(self):
-        temp = self.head
-        while temp:
-            print(temp.data, end=" ⇄ ")  # Print with arrows
-            temp = temp.next
+        temp_cursor = self.head
+        while temp_cursor:
+            print(temp_cursor.data, end=" <-> ")  # Print with arrows
+            temp_cursor = temp_cursor.next
         print("None")
 
 
     def print_backward(self):
-        temp = self.head
-        if temp is None:
+        temp_cursor = self.head
+        if temp_cursor is None:
             print("List is empty")
             return
-        while temp.next:  # Move to last node
-            temp = temp.next
-        while temp:  # Traverse backward
-            print(temp.data, end=" ⇄ ")
-            temp = temp.prev
+        while temp_cursor.next:  # Move to last node
+            temp_cursor = temp_cursor.next
+        while temp_cursor:  # Traverse backward
+            print(temp_cursor.data, end=" <-> ")
+            temp_cursor = temp_cursor.prev
         print("None")
 
 # Create a doubly linked list
-dll = DoublyLinkedList()
+dll = Doubly_Linked_List()
 
 # Insert nodes
 dll.insert_at_head(10)
@@ -63,5 +64,3 @@ dll.print_forward()
 
 print("Backward Traversal:")
 dll.print_backward()
-
-
